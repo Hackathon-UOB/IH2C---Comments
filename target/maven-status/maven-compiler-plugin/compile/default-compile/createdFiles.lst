@@ -1,0 +1,8 @@
+com\uob\comment\DTO\CommentRequestDto.class
+com\uob\comment\Model\Comment.class
+com\uob\comment\Config\WebSecurityConfig.class
+com\uob\comment\Controller\CommentController.class
+com\uob\comment\Repository\CommentRepository.class
+com\uob\comment\DTO\CommentDetail.class
+com\uob\comment\Service\CommentService.class
+com\uob\comment\CommentApplication.class
