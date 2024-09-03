@@ -15,7 +15,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/api/IH2C-Comment")
     public class CommentController {
 
         @Autowired
