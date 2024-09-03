@@ -16,6 +16,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -50,8 +51,13 @@ public class CommentService {
         commentRepository.deleteById(commentId);
     }
 
-    public List<Comment> getCommentsByPostId(BigInteger postId){
-        return commentRepository.findByPost_id(postId);
+    public List<CommentDetail> getCommentsByPostId(BigInteger postId) {
+        List<Comment> commentList = commentRepository.findByPost_id(postId);
+        List<CommentDetail> commentDetailList = commentList.stream()
+                .map(this::mapToCommentDetail) // Correctly referencing the method
+                .collect(Collectors.toList());
+
+        return commentDetailList;
     }
 
     protected CommentDetail mapToCommentDetail(Comment comment) {
@@ -60,10 +66,10 @@ public class CommentService {
                 comment.getComment(),
                 comment.getCreatedAt(),
                 comment.getUpdatedAt(),
-               comment.getUser_id()
-                );
-
+                comment.getUser_id()
+        );
     }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.uob.comment.Controller;
 
 
+import com.uob.comment.DTO.CommentDetail;
 import com.uob.comment.DTO.CommentRequestDto;
 import com.uob.comment.Model.Comment;
 import com.uob.comment.Service.CommentService;
@@ -41,8 +42,8 @@ import java.util.List;
         }
 
         @GetMapping("/{postId}")
-        public ResponseEntity<List<com.uob.comment.Model.Comment>> GetCommentListByPostId(@PathVariable BigInteger postId) {
-            List<Comment> commentList = commentService.getCommentsByPostId(postId);
+        public ResponseEntity<List<CommentDetail>> GetCommentListByPostId(@PathVariable BigInteger postId) {
+            List<CommentDetail> commentList = commentService.getCommentsByPostId(postId);
             return ResponseEntity.ok(commentList);
         }
     }
