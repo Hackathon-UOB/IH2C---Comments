@@ -22,7 +22,7 @@ import java.util.List;
         private CommentService commentService;
 
         @PostMapping
-        public ResponseEntity<Comment> createComment(@Valid @RequestBody CommentRequestDto dto) {
+        public ResponseEntity<Comment> createComment(@RequestBody CommentRequestDto dto) {
             Comment createdComment = commentService.createComment(dto);
             return ResponseEntity.status(201).body(createdComment);
         }

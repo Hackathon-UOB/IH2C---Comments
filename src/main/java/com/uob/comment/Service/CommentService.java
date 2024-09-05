@@ -28,7 +28,8 @@ public class CommentService {
 
     public Comment createComment(CommentRequestDto dto) {
         Comment comment = new Comment();
-//        comment.setUser_id(dto.getUserId());
+        comment.setUserId(dto.getUserId());
+        comment.setPostId(dto.getPostId());
         comment.setComment(dto.getComment());
         comment.setCreatedAt(LocalDateTime.now());
         comment.setUpdatedAt(LocalDateTime.now());
@@ -52,7 +53,7 @@ public class CommentService {
     }
 
     public List<CommentDetail> getCommentsByPostId(BigInteger postId) {
-        List<Comment> commentList = commentRepository.findByPost_id(postId);
+        List<Comment> commentList = commentRepository.findByPostId(postId);
         List<CommentDetail> commentDetailList = commentList.stream()
                 .map(this::mapToCommentDetail) // Correctly referencing the method
                 .collect(Collectors.toList());
@@ -66,7 +67,7 @@ public class CommentService {
                 comment.getComment(),
                 comment.getCreatedAt(),
                 comment.getUpdatedAt(),
-                comment.getUser_id()
+                comment.getUserId()
         );
     }
 

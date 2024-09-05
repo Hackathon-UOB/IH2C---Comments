@@ -1,5 +1,6 @@
 package com.uob.comment.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.Getter;
@@ -13,8 +14,10 @@ import java.math.BigInteger;
 @Getter
 public class CommentRequestDto {
         @NotNull
+        @JsonProperty("post_id")
         private BigInteger postId;
 
+        @JsonProperty("user_id")
         @NotNull
         private BigInteger userId;
 

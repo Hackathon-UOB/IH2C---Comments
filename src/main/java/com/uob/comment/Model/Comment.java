@@ -21,15 +21,17 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    @JsonBackReference
-    private Post post;
+//    @ManyToOne
+//    @JoinColumn(name = "post_id")
+//    @JsonBackReference
+    @Column(name = "post_id")
+    private BigInteger postId;
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_id")
 //    @JsonIgnore
-    private BigInteger user_id;
+    @Column(name = "user_id")
+    private BigInteger userId;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String comment;
