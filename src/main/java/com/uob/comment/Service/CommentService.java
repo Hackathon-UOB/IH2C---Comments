@@ -2,14 +2,15 @@ package com.uob.comment.Service;
 
 
 
-import com.uob.comment.DTO.CommentDetail;
-import com.uob.comment.DTO.CommentRequestDto;
+
 import com.uob.comment.Repository.CommentRepository;
 
 
 import com.uob.comment.tobeDeleted.dbmodel.Comment;
 import com.uob.comment.tobeDeleted.dbmodel.User;
+import com.uob.comment.tobeDeleted.dto.Common.CommentDetail;
 import com.uob.comment.tobeDeleted.dto.Common.UserDetail;
+import com.uob.comment.tobeDeleted.dto.Request.CommentRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

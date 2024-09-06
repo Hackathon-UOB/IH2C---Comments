@@ -1,11 +1,12 @@
 package com.uob.comment.Controller;
 
 
-import com.uob.comment.DTO.CommentDetail;
-import com.uob.comment.DTO.CommentRequestDto;
+
 import com.uob.comment.tobeDeleted.dbmodel.Comment;
 import com.uob.comment.Service.CommentService;
 
+import com.uob.comment.tobeDeleted.dto.Common.CommentDetail;
+import com.uob.comment.tobeDeleted.dto.Request.CommentRequestDto;
 import com.uob.comment.tobeDeleted.dto.Response.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
