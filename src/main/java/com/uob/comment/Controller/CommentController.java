@@ -3,9 +3,10 @@ package com.uob.comment.Controller;
 
 import com.uob.comment.DTO.CommentDetail;
 import com.uob.comment.DTO.CommentRequestDto;
-import com.uob.comment.Model.Comment;
+import com.uob.comment.tobeDeleted.dbmodel.Comment;
 import com.uob.comment.Service.CommentService;
 
+import com.uob.comment.tobeDeleted.dto.Response.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,29 +23,24 @@ import java.util.List;
         private CommentService commentService;
 
         @PostMapping
-        public ResponseEntity<Comment> createComment(@RequestBody CommentRequestDto dto) {
-            Comment createdComment = commentService.createComment(dto);
-            return ResponseEntity.status(201).body(createdComment);
+        public ApiResponse<CommentDetail> createComment(@RequestBody CommentRequestDto dto) {
+            CommentDetail createdComment = commentService.createComment(dto);
+            return ApiResponse.success("Successfully created comment", createdComment);
         }
 
         @PutMapping("/{commentId}")
-        public ResponseEntity<Comment> updateComment(
+        public ApiResponse<Comment> updateComment(
                 @PathVariable BigInteger commentId,
                 @Valid @RequestBody CommentRequestDto dto) {
             Comment updatedComment = commentService.updateComment(commentId, dto);
-            return ResponseEntity.ok(updatedComment);
+            return ApiResponse.success("successful",updatedComment);
         }
 
-        @DeleteMapping("/{commentId}")
-        public ResponseEntity<Void> deleteComment(@PathVariable BigInteger commentId) {
-            commentService.deleteComment(commentId);
-            return ResponseEntity.noContent().build();  // Return 204 No Content
-        }
 
         @GetMapping("/{postId}")
-        public ResponseEntity<List<CommentDetail>> GetCommentListByPostId(@PathVariable BigInteger postId) {
+        public ApiResponse<List<CommentDetail>> GetCommentListByPostId(@PathVariable BigInteger postId) {
             List<CommentDetail> commentList = commentService.getCommentsByPostId(postId);
-            return ResponseEntity.ok(commentList);
+            return ApiResponse.success("success",commentList);
         }
     }
 

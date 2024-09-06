@@ -4,11 +4,12 @@ package com.uob.comment.Service;
 
 import com.uob.comment.DTO.CommentDetail;
 import com.uob.comment.DTO.CommentRequestDto;
-import com.uob.comment.Model.Comment;
 import com.uob.comment.Repository.CommentRepository;
 
 
-
+import com.uob.comment.tobeDeleted.dbmodel.Comment;
+import com.uob.comment.tobeDeleted.dbmodel.User;
+import com.uob.comment.tobeDeleted.dto.Common.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,14 +27,15 @@ public class CommentService {
 
 
 
-    public Comment createComment(CommentRequestDto dto) {
+    public CommentDetail createComment(CommentRequestDto dto) {
         Comment comment = new Comment();
         comment.setUserId(dto.getUserId());
         comment.setPostId(dto.getPostId());
         comment.setComment(dto.getComment());
         comment.setCreatedAt(LocalDateTime.now());
         comment.setUpdatedAt(LocalDateTime.now());
-        return commentRepository.save(comment);
+        return mapToCommentDetail(commentRepository.save(comment));
+
     }
 
     public Comment updateComment(BigInteger commentId, CommentRequestDto dto) {
@@ -62,13 +64,16 @@ public class CommentService {
     }
 
     protected CommentDetail mapToCommentDetail(Comment comment) {
-        return new CommentDetail(
-                comment.getId(),
-                comment.getComment(),
-                comment.getCreatedAt(),
-                comment.getUpdatedAt(),
-                comment.getUserId()
-        );
+        UserDetail userNew = new UserDetail();
+        userNew.setUserId(comment.getUserId());
+        CommentDetail commentDetail = new CommentDetail();
+        commentDetail.setCommentId(comment.getId());
+        commentDetail.setCommentBody(comment.getComment());
+        commentDetail.setCreatedAt(comment.getCreatedAt());
+        commentDetail.setUpdatedAt(comment.getUpdatedAt());
+        commentDetail.setCreatedBy(userNew);
+
+        return commentDetail;
     }
 
 

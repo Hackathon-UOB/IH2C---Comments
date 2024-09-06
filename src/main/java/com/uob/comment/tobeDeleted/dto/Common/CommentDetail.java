@@ -1,9 +1,6 @@
-package com.uob.comment.DTO;
-
+package com.uob.comment.tobeDeleted.dto.Common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.uob.comment.tobeDeleted.dto.Common.UserDetail;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +22,5 @@ public class CommentDetail {
     private LocalDateTime updatedAt;
 //    @JsonProperty("created_by")
 //    private User createdBy;
-//
     private UserDetail createdBy;
 }

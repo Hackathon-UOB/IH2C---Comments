@@ -1,46 +1,46 @@
-package com.uob.comment.Model;
+package com.uob.comment.tobeDeleted.dbmodel;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "post")
+@Table(name = "comment")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Post {
+@Setter
+@Getter
+public class Comment {
 
     @Id
     @Column (name = "id", columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
 
-    @Column(nullable = false)
-    private String type;
+//    @ManyToOne
+//    @JoinColumn(name = "post_id")
+//    @JsonBackReference
+    @Column(name = "post_id")
+    private BigInteger postId;
 
-    private String title;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    @JsonIgnore
+    @Column(name = "user_id")
+    private BigInteger userId;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String body;
-
-
-    private BigInteger user_id;
+    private String comment;
 
     private String status;
 
-
-    private BigInteger parent_id;
-
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
+    private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
