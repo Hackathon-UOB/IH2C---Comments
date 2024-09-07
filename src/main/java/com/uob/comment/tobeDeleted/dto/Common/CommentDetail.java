@@ -2,6 +2,7 @@ package com.uob.comment.tobeDeleted.dto.Common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,10 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CommentDetail {
+    @JsonProperty("post_id")
+    private BigInteger postId;
     @JsonProperty("comment_id")
     private BigInteger commentId;
     @JsonProperty("comment_body")

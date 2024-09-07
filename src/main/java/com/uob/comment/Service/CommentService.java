@@ -77,6 +77,25 @@ public class CommentService {
         return commentDetail;
     }
 
+    public CommentDetail mapToCommentDetails(Comment comment) {
+        UserDetail userNew = new UserDetail();
+        userNew.setUserId(comment.getUserId());
+        return CommentDetail.builder()
+                .postId(comment.getPostId())
+                .commentId(comment.getId())
+                .commentBody(comment.getComment())
+                .createdAt(comment.getCreatedAt())
+                .updatedAt(comment.getUpdatedAt())
+                .createdBy(userNew)
+                .build();
+    }
 
+    public List<CommentDetail> getCommentListByPostIds(List<BigInteger> postIds) {
+        List<Comment> commentList = commentRepository.findByPostIdIn(postIds);
+        List<CommentDetail> commentDetailList = commentList.stream()
+                .map(this::mapToCommentDetails) // Correctly referencing the method
+                .collect(Collectors.toList());
 
+        return commentDetailList;
+    }
 }

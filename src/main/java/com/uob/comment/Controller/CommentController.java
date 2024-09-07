@@ -43,5 +43,11 @@ import java.util.List;
             List<CommentDetail> commentList = commentService.getCommentsByPostId(postId);
             return ApiResponse.success("success",commentList);
         }
+
+    @GetMapping("/comments")
+    public ApiResponse<List<CommentDetail>> getCommentListByPostIds( @RequestParam List<BigInteger> postIds) {
+        List<CommentDetail> commentList = commentService.getCommentListByPostIds(postIds);
+        return ApiResponse.success("success",commentList);
+    }
     }
 
