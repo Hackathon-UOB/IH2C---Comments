@@ -92,10 +92,9 @@ public class CommentService {
 
     public List<CommentDetail> getCommentListByPostIds(List<BigInteger> postIds) {
         List<Comment> commentList = commentRepository.findByPostIdIn(postIds);
-        List<CommentDetail> commentDetailList = commentList.stream()
+
+        return commentList.stream()
                 .map(this::mapToCommentDetails) // Correctly referencing the method
                 .collect(Collectors.toList());
-
-        return commentDetailList;
     }
 }
